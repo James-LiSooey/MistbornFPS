@@ -228,10 +228,7 @@ GameObject:
   - component: {fileID: -6076267034084200540}
   - component: {fileID: -7462356887817993745}
   - component: {fileID: 9116191575687146983}
-  - component: {fileID: -3442382008194376250}
   - component: {fileID: 1865902475210120411}
-  - component: {fileID: -3199460871020435477}
-  - component: {fileID: -7830344864643407450}
   - component: {fileID: 1149800568}
   - component: {fileID: 7707081060816314902}
   m_Layer: 31
@@ -337,7 +334,7 @@ MonoBehaviour:
   changeTo: 5
   ladderLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 256
 --- !u!114 &-7462356887817993745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +350,7 @@ MonoBehaviour:
   changeTo: 8
   ledgeLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   pushFrom: {x: 0, y: 0, z: 0}
   canGrabLedge: 1
 --- !u!114 &9116191575687146983
@@ -369,23 +366,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeTo: 9
---- !u!114 &-3442382008194376250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7085721664118310506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9acfbd53c7705af42a424d4c0b7ecebf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeTo: 6
-  wallrunLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  wallrunMinimum: 0.2
 --- !u!114 &1865902475210120411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,38 +381,7 @@ MonoBehaviour:
   changeTo: 7
   vaultLayer:
     serializedVersion: 2
-    m_Bits: 256
---- !u!114 &-3199460871020435477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7085721664118310506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 334fd209eafda9c4a85e602356d027e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeTo: 10
-  topWaterLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  cameraMovement: {fileID: 0}
-  waterHelpers: []
---- !u!114 &-7830344864643407450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7085721664118310506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e465e0bbdda5b5a469f9ab57d9311f8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeTo: 11
+    m_Bits: 1025
 --- !u!114 &1149800568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,9 +396,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_lastPositions: []
   m_newTransformIndex: 0
-  walkSpeed: 4
-  runSpeed: 8
-  crouchSpeed: 2
+  walkSpeed: 8
+  runSpeed: 10
+  crouchSpeed: 4
   jumpSpeed: 8
   gravity: 20
   antiBumpFactor: 0.75
