@@ -3,12 +3,15 @@
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
 
-BB8/[Ll]ibrary/
-BB8/[Tt]emp/
-BB8/[Oo]bj/
+MistbornFPS/[Ll]ibrary/
+MistbornFPS/[Tt]emp/
+MistbornFPS/[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
-BB8/[Ll]ogs/
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj]/
+MistbornFPS/[Ll]ogs/
 /[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
