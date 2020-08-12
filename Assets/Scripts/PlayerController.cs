@@ -4,7 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum Status { idle, walking, crouching, sprinting, sliding, climbingLadder, wallRunning, vaulting, grabbedLedge, climbingLedge, surfaceSwimming, underwaterSwimming }
+public enum Status { 
+    idle, 
+    walking, 
+    crouching,
+    sprinting, 
+    sliding, 
+    climbingLadder, 
+    wallRunning, 
+    vaulting, 
+    grabbedLedge, 
+    climbingLedge, 
+    surfaceSwimming, 
+    underwaterSwimming,
+    pushing,
+    pulling
+}
 public class StatusEvent : UnityEvent<Status, Func<IKData>> { }
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(PlayerMovement))]
@@ -118,6 +133,43 @@ public class PlayerController : MonoBehaviour
         UpdateCamLevel();
     }
 
+    /*********************************************************************/
+
+
+    /******************************** MOVE *******************************/
+    void FixedUpdate()
+    {
+        foreach (MovementType moveType in movements)
+        {
+            if (status == moveType.changeTo)
+            {
+                moveType.Movement();
+                return;
+            }
+        }
+
+        DefaultMovement();
+    }
+
+    void DefaultMovement()
+    {
+        if (isSprinting() && isCrouching())
+            Uncrouch();
+
+        movement.Move(playerInput.input, isSprinting(), isCrouching());
+        if (movement.grounded && playerInput.Jump())
+        {
+            if (status == Status.crouching)
+            {
+                if (!Uncrouch())
+                    return;
+            }
+
+            movement.Jump(Vector3.up, 1f);
+            playerInput.ResetJump();
+        }
+    }
+
     void UpdateInteraction()
     {
         if ((int)status >= 5)
@@ -199,42 +251,7 @@ public class PlayerController : MonoBehaviour
             wallDir = wallrun.getWallDir();
         return wallDir;
     }
-    /*********************************************************************/
-
-
-    /******************************** MOVE *******************************/
-    void FixedUpdate()
-    {
-        foreach (MovementType moveType in movements)
-        {
-            if (status == moveType.changeTo)
-            {
-                moveType.Movement();
-                return;
-            }
-        }
-
-        DefaultMovement();
-    }
-
-    void DefaultMovement()
-    {
-        if (isSprinting() && isCrouching())
-            Uncrouch();
-
-        movement.Move(playerInput.input, isSprinting(), isCrouching());
-        if (movement.grounded && playerInput.Jump())
-        {
-            if (status == Status.crouching)
-            {
-                if (!Uncrouch()) 
-                    return;
-            }
-
-            movement.Jump(Vector3.up, 1f);
-            playerInput.ResetJump();
-        }
-    }
+ 
 
     public bool isSprinting()
     {

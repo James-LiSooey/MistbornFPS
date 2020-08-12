@@ -56,10 +56,13 @@ public class VaultMovement : MovementType
         float movementAdjust = (Vector3.ClampMagnitude(movement.controller.velocity, 16f).magnitude / 16f);
         float checkDis = player.info.radius + movementAdjust;
 
+        //is there a vault layer in front? and did the player push jump?
         if (player.hasObjectInfront(checkDis, vaultLayer) && playerInput.Jump())
         {
+            //determines landing position pt1
             if (Physics.SphereCast(transform.position + (transform.forward * (player.info.radius - 0.25f)), 0.25f, transform.forward, out var sphereHit, checkDis, vaultLayer))
             {
+                //determines landing position pt2
                 if (Physics.SphereCast(sphereHit.point + (Vector3.up * player.info.halfheight), player.info.radius, Vector3.down, out var hit, player.info.halfheight - player.info.radius, vaultLayer))
                 {
                     Debug.DrawRay(hit.point + (Vector3.up * player.info.radius), Vector3.up * player.info.halfheight);
