@@ -7,10 +7,9 @@ public class PullMovement : MovementType
 {
     /*
     [SerializeField]
-    private LayerMask steelLayer;
+    private LayerMask metalLayer;
 
-    Vector3 vaultOver;
-    Vector3 vaultDir;
+    Vector3 pullDir;
 
     GameObject vaultHelper;
 
@@ -22,21 +21,21 @@ public class PullMovement : MovementType
 
     void SetVaultHelper()
     {
-        vaultHelper.transform.position = vaultOver;
-        vaultHelper.transform.rotation = Quaternion.LookRotation(vaultDir);
+        //vaultHelper.transform.position = vaultOver;
+        //vaultHelper.transform.rotation = Quaternion.LookRotation(vaultDir);
     }
 
     public override void SetPlayerComponents(PlayerMovement move, PlayerInput input)
     {
         base.SetPlayerComponents(move, input);
-        CreateVaultHelper();
+        //CreateVaultHelper();
     }
 
     public override void Movement()
     {
-        Vector3 dir = vaultOver - transform.position;
+        Vector3 dir = pullDir - transform.position;
         Vector3 localPos = vaultHelper.transform.InverseTransformPoint(transform.position);
-        Vector3 move = (vaultDir + (Vector3.up * -(localPos.z - player.info.radius) * player.info.height)).normalized;
+        Vector3 move = (pullDir + (Vector3.up * -(localPos.z - player.info.radius) * player.info.height)).normalized;
 
         if (localPos.z < -(player.info.radius * 2f))
             move = dir.normalized;
@@ -58,13 +57,13 @@ public class PullMovement : MovementType
         float checkDis = player.info.radius + movementAdjust;
 
         //is there a vault layer in front? and did the player push jump?
-        if (player.hasObjectInfront(checkDis, steelLayer) && playerInput.Jump())
+        if (player.hasObjectInfront(checkDis, metalLayer) && playerInput.pull)
         {
             //determines landing position pt1
-            if (Physics.SphereCast(transform.position + (transform.forward * (player.info.radius - 0.25f)), 0.25f, transform.forward, out var sphereHit, checkDis, vaultLayer))
+            if (Physics.SphereCast(transform.position + (transform.forward * (player.info.radius - 0.25f)), 0.25f, transform.forward, out var sphereHit, checkDis, metalLayer))
             {
                 //determines landing position pt2
-                if (Physics.SphereCast(sphereHit.point + (Vector3.up * player.info.halfheight), player.info.radius, Vector3.down, out var hit, player.info.halfheight - player.info.radius, vaultLayer))
+                if (Physics.SphereCast(sphereHit.point + (Vector3.up * player.info.halfheight), player.info.radius, Vector3.down, out var hit, player.info.halfheight - player.info.radius, metalLayer))
                 {
                     Debug.DrawRay(hit.point + (Vector3.up * player.info.radius), Vector3.up * player.info.halfheight);
                     //Check above the point to make sure the player can fit
@@ -80,8 +79,8 @@ public class PullMovement : MovementType
                     if (Physics.SphereCast(fromPlayer, player.info.radius / 2f, dir.normalized, out var trash2, dir.magnitude + player.info.radius))
                         return; //If we hit something blocking the vault, then do nothing
 
-                    vaultOver = hit.point;
-                    vaultDir = transform.forward;
+                    //vaultOver = hit.point;
+                    pullDir = transform.forward;
                     SetVaultHelper();
 
                     movement.controller.height = player.info.radius;
@@ -94,11 +93,11 @@ public class PullMovement : MovementType
     public override IKData IK()
     {
         IKData data = new IKData();
-        data.handPos = vaultOver + (Vector3.up * player.info.radius);
-        data.handEulerAngles = Quaternion.LookRotation(vaultDir - Vector3.up).eulerAngles;
-        data.armElbowPos = vaultOver;
-        data.armElbowPos.y = transform.position.y;
-        data.armElbowPos += Vector3.Cross(vaultDir, Vector3.up) * player.info.radius;
+        //data.handPos = vaultOver + (Vector3.up * player.info.radius);
+        //data.handEulerAngles = Quaternion.LookRotation(vaultDir - Vector3.up).eulerAngles;
+        //data.armElbowPos = vaultOver;
+        //data.armElbowPos.y = transform.position.y;
+        //data.armElbowPos += Vector3.Cross(vaultDir, Vector3.up) * player.info.radius;
         return data;
     }*/
 }
