@@ -5,6 +5,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class PullMovement : MovementType
 {
+    /*
     [SerializeField]
     private LayerMask steelLayer;
 
@@ -99,5 +100,5 @@ public class PullMovement : MovementType
         data.armElbowPos.y = transform.position.y;
         data.armElbowPos += Vector3.Cross(vaultDir, Vector3.up) * player.info.radius;
         return data;
-    }
+    }*/
 }
