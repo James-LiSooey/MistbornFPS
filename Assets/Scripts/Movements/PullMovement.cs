@@ -6,7 +6,7 @@ using UnityEngine;
 public class PullMovement : MovementType
 {
     [SerializeField]
-    private LayerMask steelLayer;
+    private LayerMask metalLayer;
 
     Vector3 vaultOver;
     Vector3 vaultDir;
@@ -60,10 +60,10 @@ public class PullMovement : MovementType
         if (player.hasObjectInfront(checkDis, steelLayer) && playerInput.Jump())
         {
             //determines landing position pt1
-            if (Physics.SphereCast(transform.position + (transform.forward * (player.info.radius - 0.25f)), 0.25f, transform.forward, out var sphereHit, checkDis, vaultLayer))
+            if (Physics.SphereCast(transform.position + (transform.forward * (player.info.radius - 0.25f)), 0.25f, transform.forward, out var sphereHit, checkDis, steelLayer))
             {
                 //determines landing position pt2
-                if (Physics.SphereCast(sphereHit.point + (Vector3.up * player.info.halfheight), player.info.radius, Vector3.down, out var hit, player.info.halfheight - player.info.radius, vaultLayer))
+                if (Physics.SphereCast(sphereHit.point + (Vector3.up * player.info.halfheight), player.info.radius, Vector3.down, out var hit, player.info.halfheight - player.info.radius, steelLayer))
                 {
                     Debug.DrawRay(hit.point + (Vector3.up * player.info.radius), Vector3.up * player.info.halfheight);
                     //Check above the point to make sure the player can fit
