@@ -91,6 +91,16 @@ public class PlayerInput : MonoBehaviour
         get { return Input.GetAxisRaw("Mouse ScrollWheel"); }
     }
 
+    public bool push
+    {
+        get { return Input.GetKeyDown(KeyCode.H); }
+    }
+
+    public bool pull
+    {
+        get { return Input.GetKeyDown(KeyCode.G); }
+    }
+
 
     private Vector2 previous;
     private Vector2 _down;
