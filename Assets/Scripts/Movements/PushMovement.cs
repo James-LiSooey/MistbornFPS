@@ -40,10 +40,14 @@ public class PushMovement : MovementType
         }
 
         Vector3 dir = toPlayer - fromPushTarget;
+        float pushSpeed = Mathf.Clamp(Mathf.Pow(10/dir.magnitude,2), .01f, 1);
         Vector3 move = dir.normalized;
         if (!playerInput.push) player.ChangeStatus(Status.walking);
 
-        movement.Move(move, movement.runSpeed, 0f);
+        var appliedGravity = 0f;
+        if (pushSpeed < 1) appliedGravity = 1- pushSpeed;
+
+        movement.Move(move, movement.runSpeed * pushSpeed, appliedGravity);
         /*
             Vector3 dir = vaultOver - transform.position;
             Vector3 localPos = vaultHelper.transform.InverseTransformPoint(transform.position);
@@ -70,7 +74,7 @@ public class PushMovement : MovementType
 
 
 
-        movement.controller.height = player.info.radius;
+        //movement.controller.height = player.info.radius;
         player.ChangeStatus(changeTo, IK);
 
     }
