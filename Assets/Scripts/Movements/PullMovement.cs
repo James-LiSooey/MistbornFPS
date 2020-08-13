@@ -5,13 +5,17 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class PullMovement : MovementType
 {
-    /*
+    public float stoppingDistance = 1.5f;
+    
     [SerializeField]
     private LayerMask metalLayer;
+    private Vector3 pullPoint;
+    private int metalLayerInt;
 
     Vector3 pullDir;
 
     GameObject vaultHelper;
+    public GameObject cam;
 
     void CreateVaultHelper()
     {
@@ -33,17 +37,21 @@ public class PullMovement : MovementType
 
     public override void Movement()
     {
-        Vector3 dir = pullDir - transform.position;
-        Vector3 localPos = vaultHelper.transform.InverseTransformPoint(transform.position);
-        Vector3 move = (pullDir + (Vector3.up * -(localPos.z - player.info.radius) * player.info.height)).normalized;
+        Vector3 dir = pullPoint - transform.position;
+        //Vector3 localPos = vaultHelper.transform.InverseTransformPoint(transform.position);
+        Vector3 move = dir.normalized;
 
-        if (localPos.z < -(player.info.radius * 2f))
-            move = dir.normalized;
-        else if (localPos.z > player.info.halfheight)
-        {
-            movement.controller.height = player.info.height;
-            player.ChangeStatus(Status.walking);
-        }
+        if (!playerInput.pull) player.ChangeStatus(Status.walking);
+
+        // if (localPos.z < -(player.info.radius * 2f))
+        //     move = dir.normalized;
+        // else if (localPos.z > player.info.halfheight)
+        // {
+        //     movement.controller.height = player.info.height;
+        //     player.ChangeStatus(Status.walking);
+        // }
+
+        //float distance = Vector3.Distance(destination.position, transform.position);
 
         movement.Move(move, movement.runSpeed, 0f);
     }
@@ -53,41 +61,59 @@ public class PullMovement : MovementType
         if (!canInteract) return;
         if (playerStatus == changeTo) return;
 
-        float movementAdjust = (Vector3.ClampMagnitude(movement.controller.velocity, 16f).magnitude / 16f);
-        float checkDis = player.info.radius + movementAdjust;
+        //float movementAdjust = (Vector3.ClampMagnitude(movement.controller.velocity, 50f).magnitude / 16f);
+        //float checkDis = player.info.radius + movementAdjust;
 
-        //is there a vault layer in front? and did the player push jump?
-        if (player.hasObjectInfront(checkDis, metalLayer) && playerInput.pull)
-        {
-            //determines landing position pt1
-            if (Physics.SphereCast(transform.position + (transform.forward * (player.info.radius - 0.25f)), 0.25f, transform.forward, out var sphereHit, checkDis, metalLayer))
-            {
-                //determines landing position pt2
-                if (Physics.SphereCast(sphereHit.point + (Vector3.up * player.info.halfheight), player.info.radius, Vector3.down, out var hit, player.info.halfheight - player.info.radius, metalLayer))
-                {
-                    Debug.DrawRay(hit.point + (Vector3.up * player.info.radius), Vector3.up * player.info.halfheight);
-                    //Check above the point to make sure the player can fit
-                    if (Physics.SphereCast(hit.point + (Vector3.up * player.info.radius), player.info.radius, Vector3.up, out var trash, player.info.halfheight))
-                        return; //If cannot fit the player then do not vault
+        RaycastHit hit;
 
-                    //Check in-front of the vault to see if something is blocking
-                    Vector3 fromPlayer = transform.position;
-                    Vector3 toVault = hit.point + (Vector3.up * player.info.radius);
-                    fromPlayer.y = toVault.y;
-
-                    Vector3 dir = (toVault - fromPlayer);
-                    if (Physics.SphereCast(fromPlayer, player.info.radius / 2f, dir.normalized, out var trash2, dir.magnitude + player.info.radius))
-                        return; //If we hit something blocking the vault, then do nothing
-
-                    //vaultOver = hit.point;
-                    pullDir = transform.forward;
-                    SetVaultHelper();
-
-                    movement.controller.height = player.info.radius;
-                    player.ChangeStatus(changeTo, IK);
-                }
+        if(playerInput.pull) {
+            //pullDir = transform.forward;
+            Debug.DrawRay(transform.position, cam.transform.forward, Color.white);
+            if(Physics.Raycast(transform.position, transform.forward, out hit, 100f, LayerMask.GetMask("Metal"))) {
+            //if(Physics.Raycast(transform.position, transform.forward, out hit)) {
+                Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
+                pullPoint = hit.point;
+                //Debug.Log("Did Hit");
+                Debug.Log("Hit object layer " + hit.transform.gameObject.layer);
+                player.ChangeStatus(changeTo, IK);
+            } else {
+                Debug.DrawRay(transform.position, transform.forward * 1000, Color.white);
+                Debug.Log("Did not Hit");
             }
         }
+
+        //is there a vault layer in front? and did the player push jump?
+        // if (player.hasObjectInfront(checkDis, metalLayer) && playerInput.pull)
+        // {
+        //     //determines landing position pt1
+        //     if (Physics.SphereCast(transform.position + (transform.forward * (player.info.radius - 0.25f)), 0.25f, transform.forward, out var sphereHit, checkDis, metalLayer))
+        //     {
+        //         //determines landing position pt2
+        //         if (Physics.SphereCast(sphereHit.point + (Vector3.up * player.info.halfheight), player.info.radius, Vector3.down, out var hit, player.info.halfheight - player.info.radius, metalLayer))
+        //         {
+        //             Debug.DrawRay(hit.point + (Vector3.up * player.info.radius), Vector3.up * player.info.halfheight);
+        //             //Check above the point to make sure the player can fit
+        //             if (Physics.SphereCast(hit.point + (Vector3.up * player.info.radius), player.info.radius, Vector3.up, out var trash, player.info.halfheight))
+        //                 return; //If cannot fit the player then do not vault
+
+        //             //Check in-front of the vault to see if something is blocking
+        //             Vector3 fromPlayer = transform.position;
+        //             Vector3 toVault = hit.point + (Vector3.up * player.info.radius);
+        //             fromPlayer.y = toVault.y;
+
+        //             Vector3 dir = (toVault - fromPlayer);
+        //             if (Physics.SphereCast(fromPlayer, player.info.radius / 2f, dir.normalized, out var trash2, dir.magnitude + player.info.radius))
+        //                 return; //If we hit something blocking the vault, then do nothing
+
+        //             //vaultOver = hit.point;
+        //             pullDir = transform.forward;
+        //             //SetVaultHelper();
+
+        //             //movement.controller.height = player.info.radius;
+        //             player.ChangeStatus(changeTo, IK);
+        //         }
+        //     }
+        // }
     }
 
     public override IKData IK()
@@ -99,5 +125,5 @@ public class PullMovement : MovementType
         //data.armElbowPos.y = transform.position.y;
         //data.armElbowPos += Vector3.Cross(vaultDir, Vector3.up) * player.info.radius;
         return data;
-    }*/
+    }
 }

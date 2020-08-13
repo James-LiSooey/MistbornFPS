@@ -98,7 +98,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool pull
     {
-        get { return Input.GetKeyDown(KeyCode.G); }
+        get { return Input.GetKey(KeyCode.G); }
     }
 
 
