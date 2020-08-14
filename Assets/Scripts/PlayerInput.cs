@@ -43,17 +43,17 @@ public class PlayerInput : MonoBehaviour
 
     public bool run
     {
-        get { return Input.GetKey(KeyCode.LeftShift); }
+        get { return Input.GetButton("Sprint"); }
     }
 
     public bool crouch
     {
-        get { return Input.GetKeyDown(KeyCode.C); }
+        get { return Input.GetButtonDown("Crouch"); }
     }
 
     public bool crouching
     {
-        get { return Input.GetKey(KeyCode.C); }
+        get { return Input.GetButton("Crouch"); }
     }
 
     public KeyCode interactKey
@@ -86,20 +86,25 @@ public class PlayerInput : MonoBehaviour
         get { return Input.GetMouseButton(0); }
     }
 
-    public float mouseScroll
-    { 
-        get { return Input.GetAxisRaw("Mouse ScrollWheel"); }
-    }
+    // public float mouseScroll
+    // { 
+    //     get { return Input.GetAxisRaw("Mouse ScrollWheel"); }
+    // }
 
     public bool push
     {
-        get { return Input.GetKey(KeyCode.H); }
+        get { return Input.GetButton("Push"); }
     }
 
     public bool pull
     {
-        get { return Input.GetKey(KeyCode.G); }
+        get { return Input.GetButton("Pull"); }
     }
+
+    // public bool senseMetal
+    // {
+    //     get { return Input.GetKey(KeyCode.)}
+    // }
 
 
     private Vector2 previous;
@@ -132,7 +137,7 @@ public class PlayerInput : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (!Input.GetKey(KeyCode.Space))
+        if (!Input.GetButton("Jump"))
         {
             jump = false;
             jumpTimer++;
