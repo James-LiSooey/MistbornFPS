@@ -7,7 +7,10 @@ public class PushMovement : MovementType
 {
     [SerializeField]
     private GameObject pushTarget;
-
+    [SerializeField]
+    private float minForceDistance = 10f;
+    [SerializeField]
+    private float pushForceModifier =2f;
     GameObject vaultHelper;
 
     /*
@@ -32,6 +35,8 @@ public class PushMovement : MovementType
 
     public override void Movement()
     {
+        Metal metal = pushTarget.GetComponent<Metal>();
+
         Vector3 fromPushTarget = pushTarget.transform.position;
         Vector3 toPlayer = transform.position;
         if (movement.grounded)
@@ -40,29 +45,21 @@ public class PushMovement : MovementType
         }
 
         Vector3 dir = toPlayer - fromPushTarget;
-        float pushSpeed = Mathf.Clamp(Mathf.Pow(10/dir.magnitude,2), .01f, 1);
+        float pushSpeed = Mathf.Clamp(Mathf.Pow(minForceDistance / dir.magnitude,1.5f), .01f, pushForceModifier);
         Vector3 move = dir.normalized;
         if (!playerInput.push) player.ChangeStatus(Status.walking);
 
         var appliedGravity = 0f;
-        if (pushSpeed < 1) appliedGravity = 1- pushSpeed;
+        if (pushSpeed < 2) appliedGravity = 1- pushSpeed;
 
-        movement.Move(move, movement.runSpeed * pushSpeed, appliedGravity);
-        /*
-            Vector3 dir = vaultOver - transform.position;
-            Vector3 localPos = vaultHelper.transform.InverseTransformPoint(transform.position);
-            Vector3 move = (vaultDir + (Vector3.up * -(localPos.z - player.info.radius) * player.info.height)).normalized;
-
-            if (localPos.z < -(player.info.radius * 2f))
-                move = dir.normalized;
-            else if (localPos.z > player.info.halfheight)
-            {
-                movement.controller.height = player.info.height;
-                player.ChangeStatus(Status.walking);
-            }
-
-            movement.Move(move, movement.runSpeed, 0f);
-            */
+        if (metal.weight < 6f)
+        {
+            metal.Push(move, -movement.walkSpeed * pushSpeed, appliedGravity);
+        }
+        else
+        {
+            movement.Move(move, movement.walkSpeed * pushSpeed, appliedGravity);
+        }
     }
 
     public override void Check(bool canInteract)
