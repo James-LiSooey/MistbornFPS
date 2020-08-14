@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 854117423}
   m_Layer: 0
   m_Name: Cube (28)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -1036,6 +1036,8 @@ MonoBehaviour:
   weight: 5
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
+  pinned: 0
+  pushed: 0
 --- !u!54 &1762299000
 Rigidbody:
   m_ObjectHideFlags: 0

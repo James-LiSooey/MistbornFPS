@@ -11,8 +11,11 @@ public class Metal : MonoBehaviour
     public Vector3 moveDirection = Vector3.zero;
     [HideInInspector]
     private Rigidbody rigidbody1;
-    [HideInInspector]
+    
     private BoxCollider collider1;
+    public bool pinned = false;
+    [SerializeField]
+    private bool pushed = false;
 
     private bool wallHit;
     private Vector3 wallHitLocation;
@@ -25,14 +28,26 @@ public class Metal : MonoBehaviour
     {
         rigidbody1 = GetComponent<Rigidbody>();
         collider1 = GetComponent<BoxCollider>();
-        rigidbody1.solverIterations = 100;
+    }
 
+    private void Update()
+    {
+        if (speed <= .01)
+        {
+            pushed = false;
+        }
+        else
+        {
+            pushed = true;
+        }
+        speed = 0;
     }
 
     public void Push(Vector3 direction1, float speed1, float appliedGravity1)
     {
+        pushed = true;
         direction = direction1;
-            speed = speed1;
+        speed = speed1;
         appliedGravity = appliedGravity1;
         Vector3 move = direction1 * speed1;
         if (appliedGravity > 20)
@@ -47,5 +62,25 @@ public class Metal : MonoBehaviour
         }
 
         rigidbody1.AddForce((moveDirection *20 * Time.deltaTime), ForceMode.VelocityChange);
+    }
+    
+    private void OnCollisionStay(Collision collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            return;
+        }
+        if (pushed)
+        {
+            pinned = true;
+        }
+        else
+        {
+            pinned = false;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        pinned = false;
     }
 }
