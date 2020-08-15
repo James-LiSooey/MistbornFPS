@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerCamera
   - Ground
+  - Metal
   layers:
   - Default
   - TransparentFX

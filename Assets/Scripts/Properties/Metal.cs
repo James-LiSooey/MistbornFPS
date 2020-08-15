@@ -66,6 +66,8 @@ public class Metal : MonoBehaviour
     
     private void OnCollisionStay(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
+
         if(collision.gameObject.tag == "Ground")
         {
             return;

@@ -5,8 +5,7 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class PushMovement : MovementType
 {
-    [SerializeField]
-    private GameObject pushTarget;
+    public GameObject pushTarget;
     [SerializeField]
     private float minForceDistance = 10f;
     [SerializeField]
