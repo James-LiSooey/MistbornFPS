@@ -68,17 +68,17 @@ public class PullMovement : MovementType
 
         if(playerInput.pull) {
             //pullDir = transform.forward;
-            Debug.DrawRay(transform.position, cam.transform.forward, Color.white);
+            //Debug.DrawRay(transform.position, cam.transform.forward, Color.white);
             if(Physics.Raycast(transform.position, transform.forward, out hit, 100f, LayerMask.GetMask("Metal"))) {
             //if(Physics.Raycast(transform.position, transform.forward, out hit)) {
-                Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
+                //Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
                 pullPoint = hit.point;
                 //Debug.Log("Did Hit");
-                Debug.Log("Hit object layer " + hit.transform.gameObject.layer);
+                //Debug.Log("Hit object layer " + hit.transform.gameObject.layer);
                 player.ChangeStatus(changeTo, IK);
             } else {
-                Debug.DrawRay(transform.position, transform.forward * 1000, Color.white);
-                Debug.Log("Did not Hit");
+                //Debug.DrawRay(transform.position, transform.forward * 1000, Color.white);
+                //Debug.Log("Did not Hit");
             }
         }
 
