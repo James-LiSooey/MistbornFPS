@@ -29,23 +29,23 @@ public class PullMovement : MovementType
         }
 
         Vector3 dir = toPlayer - fromPullTarget;
-        float pushSpeed = Mathf.Clamp(Mathf.Pow(minForceDistance / dir.magnitude, 1.5f), .01f, pullForceModifier);
+        float pullSpeed = Mathf.Clamp(Mathf.Pow(minForceDistance / dir.magnitude, 1.5f), .01f, pullForceModifier);
         if(dir.magnitude < .5)
         {
-            pushSpeed = dir.magnitude;
+            pullSpeed = dir.magnitude;
         }
         Vector3 move = dir.normalized;
         if (!playerInput.pull) player.ChangeStatus(Status.walking);
 
         var appliedGravity = 0f;
-        if (pushSpeed < 2) appliedGravity = 1 - pushSpeed;
+        if (pullSpeed < 2) appliedGravity = 1 - pullSpeed;
 
         if (metal.weight < 6f)
         {
-            metal.Push(move, pullForce * pushSpeed *.2f, appliedGravity);
+            metal.Push(move, pullForce * pullSpeed *.2f, appliedGravity);
             if (metal.pinned)
             {
-                movement.Move(move, -pullForce * pushSpeed, appliedGravity);
+                movement.Move(move, -pullForce * pullSpeed, appliedGravity);
             }
             else
             {
@@ -55,7 +55,7 @@ public class PullMovement : MovementType
         }
         else
         {
-            movement.Move(move, -pullForce * pushSpeed, appliedGravity);
+            movement.Move(move, -pullForce * pullSpeed, appliedGravity);
         }
     }
 

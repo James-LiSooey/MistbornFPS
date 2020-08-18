@@ -2804,10 +2804,6 @@ PrefabInstance:
       propertyPath: pushTarget
       value: 
       objectReference: {fileID: 1762298994}
-    - target: {fileID: 1672469974, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
-      propertyPath: lineMat
-      value: 
-      objectReference: {fileID: 2100000, guid: e4a3b8bb7757ae64f9fca966a96afa73, type: 2}
     - target: {fileID: 7085721664118310500, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
