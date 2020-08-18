@@ -284,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterBody: {fileID: 7085721664118310506}
   clampInDegrees: {x: 360, y: 180}
-  sensitivity: {x: 1, y: 1}
+  sensitivity: {x: 1.5, y: 1.5}
   smoothing: {x: 2, y: 2}
   targetDirection: {x: 0, y: 0}
   targetCharacterDirection: {x: 0, y: 0}
@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 1153563659}
   - component: {fileID: 4994954085236313987}
   - component: {fileID: 1797001016}
+  - component: {fileID: 1672469974}
   m_Layer: 31
   m_Name: Player
   m_TagString: Player
@@ -560,11 +561,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeTo: 13
-  stoppingDistance: 1.5
-  metalLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  cam: {fileID: 7085721663646366572}
+  pullTarget: {fileID: 0}
+  minForceDistance: 10
+  pullForceModifier: 2
+  pullForce: 10
+  pullHeightAdjustment: {x: 0, y: 2, z: 0}
 --- !u!114 &1797001016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -580,3 +581,18 @@ MonoBehaviour:
   screenTargets: []
   target: {fileID: 0}
   targetMaterial: {fileID: 2100000, guid: 7a43113d5dfd87c459463ad28a0d8140, type: 2}
+--- !u!114 &1672469974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085721664118310506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c51db52d12d9896479b5b570e5b33187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeTo: 0
+  lineMat: {fileID: 2100000, guid: e4a3b8bb7757ae64f9fca966a96afa73, type: 2}
+  metalObjects: []

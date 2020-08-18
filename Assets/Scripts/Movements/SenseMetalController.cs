@@ -6,30 +6,41 @@ public class SenseMetalController : MovementType
 {
 
     [SerializeField]
-    GameObject renderTarget;
+    Material lineMat;
+    public List<GameObject> metalObjects = new List<GameObject>();
 
     Color c = Color.blue;
 
     // Start is called before the first frame update
-    // void Start()
-    // {
-        
-    // }
+    void Awake()
+    {
+        foreach(GameObject metalObj in GameObject.FindGameObjectsWithTag("Metal")) {
+            metalObjects.Add(metalObj);
+            metalObj.AddComponent<LineRenderer>();
+            metalObj.GetComponent<LineRenderer>().startWidth = 0.01f;
+            metalObj.GetComponent<LineRenderer>().endWidth = 0.01f;
+            //metalObj.GetComponent<LineRenderer>().material = new Material(Shader.Find("Sprites/Default"));
+            metalObj.GetComponent<LineRenderer>().material = lineMat;
+            //metalObj.GetComponent<LineRenderer>().startColor = c;
+            //metalObj.GetComponent<LineRenderer>().endColor = c;
+            metalObj.GetComponent<LineRenderer>().enabled = false;
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("SenseMetal: " + playerInput.SenseMetal());
         if(playerInput.SenseMetal()) {
-            LineRenderer lRend = renderTarget.AddComponent<LineRenderer>();
-            lRend.SetPosition(0, transform.position);
-            lRend.SetPosition(1, renderTarget.transform.position);
-            lRend.startWidth = 0.05f;
-            lRend.endWidth = 0.05f;
-            lRend.material = new Material(Shader.Find("Sprites/Default"));
-            lRend.startColor = c;
-            lRend.endColor = c;
+            foreach(GameObject metalObj in metalObjects) {
+                metalObj.GetComponent<LineRenderer>().enabled = true;
+                metalObj.GetComponent<LineRenderer>().SetPosition(0, transform.position);
+                metalObj.GetComponent<LineRenderer>().SetPosition(1, metalObj.transform.position);
+            }
         } else {
-            Debug.Log("SenseMetal is false.");
+            foreach(GameObject metalObj in metalObjects) {
+                metalObj.GetComponent<LineRenderer>().enabled = false;
+            }
         }
     }
 }

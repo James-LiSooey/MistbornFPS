@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 211152554}
   - component: {fileID: 211152553}
   - component: {fileID: 211152552}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (6)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 416386595}
   - component: {fileID: 416386594}
   - component: {fileID: 416386593}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (4)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -800,7 +800,7 @@ GameObject:
   - component: {fileID: 485606507}
   - component: {fileID: 485606506}
   - component: {fileID: 485606505}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (3)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -1058,7 +1058,7 @@ GameObject:
   - component: {fileID: 551704327}
   - component: {fileID: 551704326}
   - component: {fileID: 551704325}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (4)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -1285,7 +1285,7 @@ GameObject:
   - component: {fileID: 600884814}
   - component: {fileID: 600884819}
   - component: {fileID: 600884818}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (1)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -1415,7 +1415,7 @@ GameObject:
   - component: {fileID: 606446056}
   - component: {fileID: 606446055}
   - component: {fileID: 606446054}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (4)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -1545,7 +1545,7 @@ GameObject:
   - component: {fileID: 651448900}
   - component: {fileID: 651448899}
   - component: {fileID: 651448898}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (4)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -1675,7 +1675,7 @@ GameObject:
   - component: {fileID: 766292359}
   - component: {fileID: 766292358}
   - component: {fileID: 766292357}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (7)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -1805,7 +1805,7 @@ GameObject:
   - component: {fileID: 828838583}
   - component: {fileID: 828838582}
   - component: {fileID: 828838581}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (3)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -2417,7 +2417,7 @@ GameObject:
   - component: {fileID: 1055975771}
   - component: {fileID: 1055975770}
   - component: {fileID: 1055975769}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (3)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -2547,7 +2547,7 @@ GameObject:
   - component: {fileID: 1165846839}
   - component: {fileID: 1165846838}
   - component: {fileID: 1165846837}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (1)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -2677,7 +2677,7 @@ GameObject:
   - component: {fileID: 1188378499}
   - component: {fileID: 1188378498}
   - component: {fileID: 1188378497}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (1)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -2804,6 +2804,10 @@ PrefabInstance:
       propertyPath: pushTarget
       value: 
       objectReference: {fileID: 1762298994}
+    - target: {fileID: 1672469974, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
+      propertyPath: lineMat
+      value: 
+      objectReference: {fileID: 2100000, guid: e4a3b8bb7757ae64f9fca966a96afa73, type: 2}
     - target: {fileID: 7085721664118310500, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2873,7 +2877,7 @@ GameObject:
   - component: {fileID: 1388681214}
   - component: {fileID: 1388681213}
   - component: {fileID: 1388681212}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (5)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -3003,7 +3007,7 @@ GameObject:
   - component: {fileID: 1398737862}
   - component: {fileID: 1398737861}
   - component: {fileID: 1398737860}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (1)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -3174,7 +3178,7 @@ GameObject:
   - component: {fileID: 1477556639}
   - component: {fileID: 1477556638}
   - component: {fileID: 1477556637}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (3)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -3304,7 +3308,7 @@ GameObject:
   - component: {fileID: 1694441798}
   - component: {fileID: 1694441797}
   - component: {fileID: 1694441796}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (1)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -3724,7 +3728,7 @@ GameObject:
   - component: {fileID: 1857559878}
   - component: {fileID: 1857559877}
   - component: {fileID: 1857559876}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (3)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -3854,7 +3858,7 @@ GameObject:
   - component: {fileID: 1872962294}
   - component: {fileID: 1872962293}
   - component: {fileID: 1872962292}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (4)
   m_TagString: Metal
   m_Icon: {fileID: 0}
@@ -3984,7 +3988,7 @@ GameObject:
   - component: {fileID: 1932813903}
   - component: {fileID: 1932813902}
   - component: {fileID: 1932813901}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wall (4)
   m_TagString: Metal
   m_Icon: {fileID: 0}
