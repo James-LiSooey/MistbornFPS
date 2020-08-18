@@ -10,7 +10,9 @@ public class AllomancyTargeting : MonoBehaviour
     private Material baseMaterial;
     private Renderer renderer;
 
+    private PlayerInput playerInput;
     private PushMovement pushmovement;
+    private PullMovement pullmovement;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,9 @@ public class AllomancyTargeting : MonoBehaviour
             target = screenTargets[targetIndex()];
         }
 
+        playerInput = GetComponent<PlayerInput>();
         pushmovement = GetComponent<PushMovement>();
+        pullmovement = GetComponent<PullMovement>();
 
     }
 
@@ -27,20 +31,27 @@ public class AllomancyTargeting : MonoBehaviour
     void Update()
     {
         
+        if((target && playerInput.lockOn) || playerInput.push || playerInput.pull)
+        {
+            return;
+        }
+
         if (screenTargets.Count > 0)
         {
             if (!target)
             {
                 target = screenTargets[targetIndex()];
             }
-                renderer = target.gameObject.GetComponent<Renderer>();
-                renderer.material = baseMaterial;
+
+            renderer = target.gameObject.GetComponent<Renderer>();
+            renderer.material = baseMaterial;
 
             target = screenTargets[targetIndex()];
             renderer = target.gameObject.GetComponent<Renderer>();
             baseMaterial = renderer.material;
             renderer.material = targetMaterial;
             pushmovement.pushTarget = target.gameObject;
+            pullmovement.pullTarget = target.gameObject;
         }
 
     }

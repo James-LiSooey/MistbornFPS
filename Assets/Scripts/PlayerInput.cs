@@ -61,6 +61,11 @@ public class PlayerInput : MonoBehaviour
         get { return KeyCode.E; }
     }
 
+    public bool lockOn
+    {
+        get { return Input.GetButton("lockOn"); }
+    }
+
     public bool interact
     {
         get { return Input.GetKeyDown(interactKey); }

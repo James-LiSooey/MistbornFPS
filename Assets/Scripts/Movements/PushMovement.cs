@@ -10,6 +10,8 @@ public class PushMovement : MovementType
     private float minForceDistance = 10f;
     [SerializeField]
     private float pushForceModifier =2f;
+    [SerializeField]
+    private float pushForce = 10f;
     GameObject vaultHelper;
 
     public override void Movement()
@@ -33,15 +35,20 @@ public class PushMovement : MovementType
 
         if (metal.weight < 6f)
         {
-            metal.Push(move, -movement.walkSpeed * pushSpeed, appliedGravity);
+            metal.Push(move, -pushForce * pushSpeed * .2f, appliedGravity);
             if (metal.pinned)
             {
-                movement.Move(move, movement.walkSpeed * pushSpeed, appliedGravity);
+                movement.Move(move, pushForce * pushSpeed, appliedGravity);
             }
-            
-        }else
+            else
+            {
+                movement.Move(toPlayer, 0, 1);
+            }
+
+        }
+        else
         {
-            movement.Move(move, movement.walkSpeed * pushSpeed, appliedGravity);
+            movement.Move(move, pushForce * pushSpeed, appliedGravity);
         }
     }
 
@@ -50,7 +57,8 @@ public class PushMovement : MovementType
         if (!canInteract) return;
         if (playerStatus == changeTo) return;
 
-        if (!(pushTarget && playerInput.push)) return;
+        if (!pushTarget ) return;
+        if (!playerInput.push) return;
 
         player.ChangeStatus(changeTo, IK);
     }
