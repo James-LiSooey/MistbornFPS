@@ -284,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterBody: {fileID: 7085721664118310506}
   clampInDegrees: {x: 360, y: 180}
-  sensitivity: {x: 1, y: 1}
+  sensitivity: {x: 0.8, y: 0.8}
   smoothing: {x: 2, y: 2}
   targetDirection: {x: 0, y: 0}
   targetCharacterDirection: {x: 0, y: 0}
