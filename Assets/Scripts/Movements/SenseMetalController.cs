@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class SenseMetalController : MovementType
@@ -26,7 +27,7 @@ public class SenseMetalController : MovementType
     //Update is called once per frame
     void Update()
     {
-        if(playerInput.SenseMetal()) {
+        if(playerInput.senseMetal) {
             foreach(GameObject metalObj in metalObjects) {
                 metalObj.GetComponent<LineRenderer>().enabled = true;
                 metalObj.GetComponent<LineRenderer>().SetPosition(0, transform.position);

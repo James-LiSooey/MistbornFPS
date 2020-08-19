@@ -106,12 +106,16 @@ public class PlayerInput : MonoBehaviour
         get { return Input.GetButton("Pull"); }
     }
 
+    public bool senseMetal
+    {
+        get { return Input.GetButton("SenseMetal");  }
+    }
+
     private Vector2 previous;
     private Vector2 _down;
 
     private int jumpTimer;
     private bool jump;
-    private bool senseMetal = false;
 
     void Start()
     {
@@ -144,8 +148,6 @@ public class PlayerInput : MonoBehaviour
         }
         else if (jumpTimer > 0)
             jump = true;
-
-        if (Input.GetButtonDown("SenseMetal")) senseMetal = !senseMetal;
     }
 
     public bool Jump()
@@ -156,10 +158,5 @@ public class PlayerInput : MonoBehaviour
     public void ResetJump()
     {
         jumpTimer = -1;
-    }
-
-    public bool SenseMetal()
-    {
-        return senseMetal;
     }
 }

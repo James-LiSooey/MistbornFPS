@@ -18,7 +18,8 @@ public enum Status {
     surfaceSwimming, 
     underwaterSwimming,
     pushing,
-    pulling
+    pulling,
+    sensing
 }
 public class StatusEvent : UnityEvent<Status, Func<IKData>> { }
 [RequireComponent(typeof(PlayerInput))]

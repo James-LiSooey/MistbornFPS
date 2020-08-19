@@ -284,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterBody: {fileID: 7085721664118310506}
   clampInDegrees: {x: 360, y: 180}
-  sensitivity: {x: 1.5, y: 1.5}
+  sensitivity: {x: 1, y: 1}
   smoothing: {x: 2, y: 2}
   targetDirection: {x: 0, y: 0}
   targetCharacterDirection: {x: 0, y: 0}
@@ -593,6 +593,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51db52d12d9896479b5b570e5b33187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTo: 0
+  changeTo: 14
   lineMat: {fileID: 2100000, guid: e4a3b8bb7757ae64f9fca966a96afa73, type: 2}
   metalObjects: []
