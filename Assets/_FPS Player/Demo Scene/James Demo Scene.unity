@@ -2800,10 +2800,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 497580416}
     m_Modifications:
+    - target: {fileID: 963194229, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
+      propertyPath: sensitivity.y
+      value: 0.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 963194229, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
+      propertyPath: sensitivity.x
+      value: 0.56
+      objectReference: {fileID: 0}
     - target: {fileID: 1153563659, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
       propertyPath: pushTarget
       value: 
       objectReference: {fileID: 1762298994}
+    - target: {fileID: 1672469974, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
+      propertyPath: lineMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 7a43113d5dfd87c459463ad28a0d8140, type: 2}
     - target: {fileID: 7085721664118310500, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
