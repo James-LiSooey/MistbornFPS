@@ -101,6 +101,11 @@ public class PlayerInput : MonoBehaviour
         get { return Input.GetButton("Push"); }
     }
 
+    public bool pushRelease
+    {
+        get { return Input.GetButtonUp("Push"); }
+    }
+
     public bool pull
     {
         get { return Input.GetButton("Pull"); }

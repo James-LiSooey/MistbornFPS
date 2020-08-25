@@ -33,6 +33,8 @@ public class PushMovement : MovementType
         var appliedGravity = 0f;
         if (pushSpeed < 2) appliedGravity = 1- pushSpeed;
 
+        metal.UnEquipObject();
+
         if (metal.weight < 6f)
         {
             metal.Push(move, -pushForce * pushSpeed * .2f, appliedGravity);

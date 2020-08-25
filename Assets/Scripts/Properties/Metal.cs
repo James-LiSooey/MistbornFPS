@@ -14,9 +14,10 @@ public class Metal : MonoBehaviour
     
     private BoxCollider collider1;
     public bool pinned = false;
+    public bool equiped = false;
     [SerializeField]
     private bool pushed = false;
-
+    public Transform equipTransform;
     private bool wallHit;
     private Vector3 wallHitLocation;
     private Vector3 direction = new Vector3(0, 0, 0);
@@ -41,6 +42,15 @@ public class Metal : MonoBehaviour
             pushed = true;
         }
         speed = 0;
+        if (equiped)
+        {
+            transform.position = equipTransform.position;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
 
     public void Push(Vector3 direction1, float speed1, float appliedGravity1)
@@ -66,9 +76,11 @@ public class Metal : MonoBehaviour
     
     private void OnCollisionStay(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
-
-        if(collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Player")
+        {
+            return;
+        }
+            if (collision.gameObject.transform.position.y <transform.position.y && moveDirection.normalized.y>-.5f)
         {
             return;
         }
@@ -81,6 +93,34 @@ public class Metal : MonoBehaviour
             pinned = false;
         }
     }
+
+    public void EquipObject()
+    {
+        equiped = true;
+        rigidbody1.isKinematic = true;
+        rigidbody1.velocity = Vector3.zero;
+        collider1.enabled = false;
+    }
+
+    public void EquipObject(Transform equipTransformTarget)
+    {
+        equiped = true;
+        rigidbody1.isKinematic = true;
+        rigidbody1.velocity = Vector3.zero;
+        equipTransform = equipTransformTarget;
+        transform.position = equipTransform.position;
+    }
+
+    public void UnEquipObject()
+    {
+        if (equiped)
+        {
+            equiped = false;
+            rigidbody1.isKinematic = false;
+            collider1.enabled = true;
+        }
+    }
+
     private void OnCollisionExit(Collision collision)
     {
         pinned = false;

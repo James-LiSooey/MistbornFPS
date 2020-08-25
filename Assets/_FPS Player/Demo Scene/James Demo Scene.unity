@@ -310,7 +310,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &211152553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -611,7 +613,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &416386594
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -837,7 +841,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &485606506
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1095,7 +1101,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &551704326
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1384,7 +1392,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &600884819
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1438,7 +1448,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &606446055
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1582,7 +1594,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &651448899
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1698,7 +1712,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &766292358
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1842,7 +1858,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &828838582
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1935,7 +1953,7 @@ GameObject:
   - component: {fileID: 854117423}
   m_Layer: 0
   m_Name: Cube (28)
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2454,7 +2472,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1055975770
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2584,7 +2604,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1165846838
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2714,7 +2736,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1188378498
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2804,6 +2828,26 @@ PrefabInstance:
       propertyPath: pushTarget
       value: 
       objectReference: {fileID: 1762298994}
+    - target: {fileID: 1394321974, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394321974, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394321976, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6526632517528651534, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
+      propertyPath: EquipPosition
+      value: 
+      objectReference: {fileID: 1394321974}
+    - target: {fileID: 6526632517528651534, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
+      propertyPath: equipTransform
+      value: 
+      objectReference: {fileID: 1394321974}
     - target: {fileID: 7085721664118310500, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2852,7 +2896,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1394321975, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
 --- !u!4 &1315965980 stripped
 Transform:
@@ -2896,7 +2941,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1388681213
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2989,6 +3036,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!4 &1394321974 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1394321974, guid: c2dc14f109b09a743b03757ef68006c7, type: 3}
+  m_PrefabInstance: {fileID: 1315965979}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1398737858
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,7 +3092,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1398737861
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3211,7 +3265,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1477556638
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3449,7 +3505,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1694441797
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3704,7 +3762,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1762299000
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3869,7 +3929,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1857559877
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3999,7 +4061,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1872962293
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4129,7 +4193,9 @@ MonoBehaviour:
   allomantic: 1
   moveDirection: {x: 0, y: 0, z: 0}
   pinned: 0
+  equiped: 0
   pushed: 0
+  equipTransform: {fileID: 0}
 --- !u!54 &1932813902
 Rigidbody:
   m_ObjectHideFlags: 0

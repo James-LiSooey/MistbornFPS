@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     WallrunMovement wallrun;
     SurfaceSwimmingMovement swimming;
 
+    public Transform equipTransform;
     public void ChangeStatus(Status s)
     {
         if (status == s) return;
@@ -322,6 +323,15 @@ public class PlayerController : MonoBehaviour
         top += (transform.up * info.radius);
 
         return (Physics.CapsuleCastAll(top, bottom, 0.25f, transform.right * dir, 0.05f, layer).Length >= 1);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Metal" && playerInput.pull)
+        {
+            var metal = collision.gameObject.GetComponent<Metal>();
+            metal.EquipObject(equipTransform);
+        }
     }
 }
 
