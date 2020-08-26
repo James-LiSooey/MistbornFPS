@@ -13,6 +13,7 @@ public class PushMovement : MovementType
     [SerializeField]
     private float pushForce = 10f;
     GameObject vaultHelper;
+    private PlayerController playerController;
 
     public override void Movement()
     {
@@ -20,10 +21,10 @@ public class PushMovement : MovementType
 
         Vector3 fromPushTarget = pushTarget.transform.position;
         Vector3 toPlayer = transform.position;
-        if (movement.grounded)
-        {
-            fromPushTarget.y = toPlayer.y;
-        }
+        //if (movement.grounded)
+        //{
+        //    //fromPushTarget.y = toPlayer.y;
+        //}
 
         Vector3 dir = toPlayer - fromPushTarget;
         float pushSpeed = Mathf.Clamp(Mathf.Pow(minForceDistance / dir.magnitude,1.5f), .01f, pushForceModifier);

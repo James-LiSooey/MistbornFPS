@@ -25,7 +25,7 @@ public class PullMovement : MovementType
         Vector3 toPlayer = transform.position;
         if (movement.grounded)
         {
-            fromPullTarget.y = toPlayer.y;
+            //fromPullTarget.y = toPlayer.y;
         }
 
         Vector3 dir = toPlayer - fromPullTarget;
@@ -35,7 +35,7 @@ public class PullMovement : MovementType
             pullSpeed = dir.magnitude;
         }
         Vector3 move = dir.normalized;
-        if (!playerInput.pull) player.ChangeStatus(Status.walking);
+        if (!playerInput.pull || metal.equiped) player.ChangeStatus(Status.walking);
 
         var appliedGravity = 0f;
         if (pullSpeed < 2) appliedGravity = 1 - pullSpeed;
@@ -43,14 +43,14 @@ public class PullMovement : MovementType
         if (metal.weight < 6f)
         {
             metal.Push(move, pullForce * pullSpeed *.2f, appliedGravity);
-            if (metal.pinned)
-            {
-                movement.Move(move, -pullForce * pullSpeed, appliedGravity);
-            }
-            else
-            {
+            //if (metal.pinned)
+            //{
+            //    movement.Move(move, -pullForce * pullSpeed, appliedGravity);
+            //}
+            //else
+            //{
                 movement.Move(toPlayer, 0, 1);
-            }
+            //}
 
         }
         else

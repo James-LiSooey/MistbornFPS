@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     bool canInteract;
     bool forceSprintReserve = false;
-    
+
     float crouchCamAdjust;
     float stamina;
 
@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     SurfaceSwimmingMovement swimming;
 
     public Transform equipTransform;
+    private AllomancyTargeting allomancyTargeting;
     public void ChangeStatus(Status s)
     {
         if (status == s) return;
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddToStatusChange(UnityAction<Status, Func<IKData>> action)
     {
-        if(onStatusChange == null)
+        if (onStatusChange == null)
             onStatusChange = new StatusEvent();
 
         onStatusChange.AddListener(action);
@@ -99,7 +100,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
-
+        allomancyTargeting = GetComponent<AllomancyTargeting>();
         movement = GetComponent<PlayerMovement>();
         movement.AddToReset(() => { status = Status.walking; });
 
@@ -126,7 +127,7 @@ public class PlayerController : MonoBehaviour
         CheckCrouching();
         foreach (MovementType moveType in movements)
         {
-            if(moveType.enabled)
+            if (moveType.enabled)
                 moveType.Check(canInteract);
         }
 
@@ -241,7 +242,7 @@ public class PlayerController : MonoBehaviour
         if (animateCamLevel == null) return;
 
         float level = 0f;
-        if(status == Status.crouching || status == Status.sliding || status == Status.vaulting || status == Status.climbingLedge || status == Status.underwaterSwimming)
+        if (status == Status.crouching || status == Status.sliding || status == Status.vaulting || status == Status.climbingLedge || status == Status.underwaterSwimming)
             level = crouchCamAdjust;
         animateCamLevel.UpdateLevel(level);
     }
@@ -253,7 +254,7 @@ public class PlayerController : MonoBehaviour
             wallDir = wallrun.getWallDir();
         return wallDir;
     }
- 
+
 
     public bool isSprinting()
     {
@@ -271,7 +272,7 @@ public class PlayerController : MonoBehaviour
     {
         return (status == Status.crouching);
     }
-   
+
     void CheckCrouching()
     {
         if (!movement.grounded || (int)status > 2) return;
@@ -294,7 +295,7 @@ public class PlayerController : MonoBehaviour
     public void Crouch(bool setStatus)
     {
         movement.controller.height = crouchHeight;
-        if(setStatus) ChangeStatus(Status.crouching);
+        if (setStatus) ChangeStatus(Status.crouching);
     }
 
     public bool Uncrouch()
@@ -327,9 +328,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Metal" && playerInput.pull)
+        if (collision.gameObject.tag == "Metal" && playerInput.pull)
         {
             var metal = collision.gameObject.GetComponent<Metal>();
+            allomancyTargeting.screenTargets.Remove(collision.gameObject.transform);
             metal.EquipObject(equipTransform);
         }
     }
