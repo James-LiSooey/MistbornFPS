@@ -12,7 +12,7 @@ public class Metal : MonoBehaviour
     [HideInInspector]
     private Rigidbody rigidbody1;
     
-    private BoxCollider collider1;
+    private MeshCollider collider1;
     public bool pinned = false;
     public bool equiped = false;
     [SerializeField]
@@ -28,7 +28,7 @@ public class Metal : MonoBehaviour
     void Start()
     {
         rigidbody1 = GetComponent<Rigidbody>();
-        collider1 = GetComponent<BoxCollider>();
+        collider1 = GetComponent<MeshCollider>();
     }
 
     private void Update()
@@ -55,6 +55,7 @@ public class Metal : MonoBehaviour
 
     public void Push(Vector3 direction1, float speed1, float appliedGravity1)
     {
+        
         pushed = true;
         direction = direction1;
         speed = speed1;
@@ -76,12 +77,20 @@ public class Metal : MonoBehaviour
     
     private void OnCollisionStay(Collision collision)
     {
+        if (equiped)
+        {
+            pinned = false;
+            return;
+        }
+        
         if (collision.gameObject.tag == "Player")
         {
+            pinned = false;
             return;
         }
             if (collision.gameObject.transform.position.y <transform.position.y && moveDirection.normalized.y>-.5f)
         {
+            pinned = false;
             return;
         }
         if (pushed)
@@ -100,13 +109,16 @@ public class Metal : MonoBehaviour
         rigidbody1.isKinematic = true;
         rigidbody1.velocity = Vector3.zero;
         collider1.enabled = false;
+        pinned = false;
     }
 
     public void EquipObject(Transform equipTransformTarget)
     {
+        pinned = false;
         equiped = true;
         rigidbody1.isKinematic = true;
         rigidbody1.velocity = Vector3.zero;
+        collider1.enabled = false;
         equipTransform = equipTransformTarget;
         transform.position = equipTransform.position;
     }
@@ -118,11 +130,36 @@ public class Metal : MonoBehaviour
             equiped = false;
             rigidbody1.isKinematic = false;
             collider1.enabled = true;
+            //StartCoroutine("ResetColliderCoroutine", 1);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            EquipObject();
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
         pinned = false;
+    }
+
+    IEnumerator ResetColliderCoroutine(float Count)
+    {
+        yield return new WaitForSeconds(Count); //Count is the amount of time in seconds that you want to wait.
+        ResetCollider();                           //And here goes your method of resetting the game...
+        yield return null;
+    }
+
+    public void ResetCollider()
+    {
+        if (equiped)
+        {
+            Debug.Log("here");
+            collider1.enabled = true;
+        }
     }
 }
