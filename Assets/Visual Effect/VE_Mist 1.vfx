@@ -585,7 +585,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614674}
   - {fileID: 8926484042661614805}
   dataType: 0
-  capacity: 1000
+  capacity: 2000
   stripCapacity: 16
   particlePerStripCount: 16
   m_Space: 0
@@ -2028,7 +2028,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 2
+      m_SerializableObject: 0
     m_Space: 2147483647
   m_Property:
     name: FrameRate
@@ -4852,7 +4852,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0
+      m_SerializableObject: 0.5232568
     m_Space: 2147483647
   m_Property:
     name: cropFactor
@@ -5229,7 +5229,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":9.972944259643555,"y":10.178435325622559,"z":13.132075309753418}'
+      m_SerializableObject: '{"x":3.6567046642303469,"y":4.436002731323242,"z":6.204408645629883}'
     m_Space: 2147483647
   m_Property:
     name: Color
@@ -5374,7 +5374,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1000
+      m_SerializableObject: 2000
     m_Space: 2147483647
   m_Property:
     name: Count

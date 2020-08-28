@@ -30,7 +30,7 @@ public class PullMovement : MovementType
 
         Vector3 dir = toPlayer - fromPullTarget;
         float pullSpeed = Mathf.Clamp(Mathf.Pow(minForceDistance / dir.magnitude, 1.5f), .01f, pullForceModifier);
-        if(dir.magnitude < .5)
+        if(dir.magnitude < 1f)
         {
             pullSpeed = dir.magnitude;
         }
