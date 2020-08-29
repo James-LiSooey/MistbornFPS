@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -8,6 +9,15 @@ public class CameraMovement : MonoBehaviour
     Vector2 _smoothMouse;
 
     public GameObject characterBody;
+
+    [SerializeField]
+    Slider horizontalSlider;
+
+    [SerializeField]
+    Slider verticalSlider;
+
+    private float horizontalSens;
+    private float verticalSens;
 
     [SerializeField]
     private Vector2 clampInDegrees = new Vector2(360, 180);
@@ -20,6 +30,10 @@ public class CameraMovement : MonoBehaviour
     [SerializeField]
     private Vector2 targetCharacterDirection;
 
+    
+
+    private PlayerInput playerInput;
+
     void Start()
     {
         // Set target direction to the camera's initial orientation.
@@ -28,10 +42,22 @@ public class CameraMovement : MonoBehaviour
         // Set target direction for the character body to its inital state.
         if (characterBody)
             targetCharacterDirection = characterBody.transform.localRotation.eulerAngles;
+
+        playerInput = GetComponentInParent<PlayerInput>();
+
+        horizontalSens = 0.59f;
+        verticalSens = 0.59f;
     }
 
     void Update()
     {
+        if(playerInput.pauseMenuEnabled) return;
+
+        if(horizontalSlider.IsActive() && verticalSlider.IsActive()) {
+            horizontalSens = horizontalSlider.value;
+            verticalSens = verticalSlider.value;
+        }
+
         // Allow the script to clamp based on a desired target value.
         var targetOrientation = Quaternion.Euler(targetDirection);
         var targetCharacterOrientation = Quaternion.Euler(targetCharacterDirection);
@@ -43,7 +69,7 @@ public class CameraMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
             
         // Scale input against the sensitivity setting and multiply that against the smoothing value.
-        mouseDelta = Vector2.Scale(mouseDelta, new Vector2(sensitivity.x * smoothing.x, sensitivity.y * smoothing.y));
+        mouseDelta = Vector2.Scale(mouseDelta, new Vector2(horizontalSens * smoothing.x, verticalSens * smoothing.y));
 
         // Interpolate mouse movement over time to apply smoothing delta.
         _smoothMouse.x = Mathf.Lerp(_smoothMouse.x, mouseDelta.x, 1f / smoothing.x);
@@ -88,5 +114,10 @@ public class CameraMovement : MonoBehaviour
                 yield return null;
             }
         }
+    }
+
+    public void SetSensitivity(float sensX, float sensY) {
+        horizontalSens = sensX;
+        verticalSens = sensY;
     }
 }
