@@ -17,22 +17,24 @@ public class PushMovement : MovementType
 
     public override void Movement()
     {
+        if (!playerInput.push)
+        {
+            player.ChangeStatus(Status.walking);
+            return;
+        }
+
         Metal metal = pushTarget.GetComponent<Metal>();
 
         Vector3 fromPushTarget = pushTarget.transform.position;
         Vector3 toPlayer = transform.position;
-        //if (movement.grounded)
-        //{
-        //    //fromPushTarget.y = toPlayer.y;
-        //}
 
         Vector3 dir = toPlayer - fromPushTarget;
         float pushSpeed = Mathf.Clamp(Mathf.Pow(minForceDistance / dir.magnitude,1.5f), .01f, pushForceModifier);
         Vector3 move = dir.normalized;
-        if (!playerInput.push) player.ChangeStatus(Status.walking);
 
         var appliedGravity = 0f;
-        if (pushSpeed < 2) appliedGravity = 1- pushSpeed;
+
+        if (pushSpeed < 1) appliedGravity = Mathf.Clamp(1 /pushSpeed,.1f,1f);
 
         metal.UnEquipObject();
 

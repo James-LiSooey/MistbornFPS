@@ -328,10 +328,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Metal" && playerInput.pull)
+        if (collision.gameObject.tag == "Metal" && playerInput.pull && !allomancyTargeting.equipedTransform)
         {
             var metal = collision.gameObject.GetComponent<Metal>();
-            allomancyTargeting.screenTargets.Remove(collision.gameObject.transform);
+            allomancyTargeting.EquipTarget(collision.gameObject);
             metal.EquipObject(equipTransform);
         }
     }

@@ -66,6 +66,11 @@ public class PlayerInput : MonoBehaviour
         get { return Input.GetButton("lockOn"); }
     }
 
+    public bool AimEquipped
+    {
+        get { return Input.GetAxis("AimEquipped")>.1f; }
+    }
+
     public bool interact
     {
         get { return Input.GetKeyDown(interactKey); }

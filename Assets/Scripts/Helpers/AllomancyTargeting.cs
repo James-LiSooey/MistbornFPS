@@ -8,7 +8,7 @@ public class AllomancyTargeting : MonoBehaviour
     public Transform target;
     public Material targetMaterial;
     private Material baseMaterial;
-    private Renderer renderer;
+    private Renderer targetRenderer;
 
     public Transform equipedTransform;
     private PlayerInput playerInput;
@@ -32,8 +32,38 @@ public class AllomancyTargeting : MonoBehaviour
     void Update()
     {
 
+        if (equipedTransform && equipedTransform.gameObject)
+        {
+            var metal = equipedTransform.gameObject.GetComponent<Metal>();
+            if (!metal.equiped)
+            {
+                equipedTransform = null;
+            }
+        }
+
         if ((target && playerInput.lockOn) || playerInput.push || playerInput.pull)
         {
+            return;
+        }
+
+        if(equipedTransform && playerInput.AimEquipped)
+        {
+            if (!target)
+            {
+                target = screenTargets[targetIndex()];
+            }
+
+            targetRenderer = target.gameObject.GetComponent<Renderer>();
+            targetRenderer.material = baseMaterial;
+
+            target = equipedTransform;
+
+            targetRenderer = target.gameObject.GetComponent<Renderer>();
+            baseMaterial = targetRenderer.material;
+            targetRenderer.material = targetMaterial;
+            pushmovement.pushTarget = target.gameObject;
+            pullmovement.pullTarget = target.gameObject;
+
             return;
         }
 
@@ -44,13 +74,13 @@ public class AllomancyTargeting : MonoBehaviour
                 target = screenTargets[targetIndex()];
             }
 
-            renderer = target.gameObject.GetComponent<Renderer>();
-            renderer.material = baseMaterial;
+            targetRenderer = target.gameObject.GetComponent<Renderer>();
+            targetRenderer.material = baseMaterial;
 
             target = screenTargets[targetIndex()];
-            renderer = target.gameObject.GetComponent<Renderer>();
-            baseMaterial = renderer.material;
-            renderer.material = targetMaterial;
+            targetRenderer = target.gameObject.GetComponent<Renderer>();
+            baseMaterial = targetRenderer.material;
+            targetRenderer.material = targetMaterial;
             pushmovement.pushTarget = target.gameObject;
             pullmovement.pullTarget = target.gameObject;
         }
@@ -65,7 +95,6 @@ public class AllomancyTargeting : MonoBehaviour
         
         {
             distances[i] = Vector2.Distance(Camera.main.WorldToScreenPoint(screenTargets[i].position), new Vector2(Screen.width / 2, Screen.height / 2));
-           
         }
 
         float minDistance = Mathf.Min(distances);
@@ -75,12 +104,27 @@ public class AllomancyTargeting : MonoBehaviour
         {
             if (minDistance == distances[i])
             {
-                
                 index = i;
             }
         }
 
         return index;
 
+    }
+
+    public void RemoveTarget(GameObject targetGameObject)
+    {
+        screenTargets.Remove(targetGameObject.transform);
+    }
+
+    public void EquipTarget(GameObject equipGameObject)
+    {
+        screenTargets.Remove(equipGameObject.transform);
+        equipedTransform = equipGameObject.transform;
+    }
+
+    public void UnEquipTarget()
+    {
+        equipedTransform = null;
     }
 }

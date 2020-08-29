@@ -24,6 +24,8 @@ public class Metal : MonoBehaviour
     private float speed = 0;
     private float appliedGravity = 0;
 
+    public List<GameObject> collisionsGOList;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +42,7 @@ public class Metal : MonoBehaviour
         else
         {
             pushed = true;
+
         }
         speed = 0;
         if (equiped)
@@ -50,7 +53,27 @@ public class Metal : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        if (equiped)
+        {
+            pinned = false;
+            return;
+        }
+
+        if(moveDirection == Vector3.zero)
+        {
+            pinned = false;
+            return;
+        }
+
+        RaycastHit rayHit;
+
+        if (Physics.Raycast(transform.position, moveDirection.normalized, out rayHit, 2f)){
+            pinned = true;
+        }
+
+        rigidbody1.AddForce((moveDirection * 20 * Time.deltaTime), ForceMode.VelocityChange);
+
+        moveDirection = Vector3.zero;
     }
 
     public void Push(Vector3 direction1, float speed1, float appliedGravity1)
@@ -70,36 +93,6 @@ public class Metal : MonoBehaviour
         else
         {
             moveDirection = move;
-        }
-
-        rigidbody1.AddForce((moveDirection *20 * Time.deltaTime), ForceMode.VelocityChange);
-    }
-    
-    private void OnCollisionStay(Collision collision)
-    {
-        if (equiped)
-        {
-            pinned = false;
-            return;
-        }
-        
-        if (collision.gameObject.tag == "Player")
-        {
-            pinned = false;
-            return;
-        }
-            if (collision.gameObject.transform.position.y <transform.position.y && moveDirection.normalized.y>-.5f)
-        {
-            pinned = false;
-            return;
-        }
-        if (pushed)
-        {
-            pinned = true;
-        }
-        else
-        {
-            pinned = false;
         }
     }
 
@@ -130,36 +123,23 @@ public class Metal : MonoBehaviour
             equiped = false;
             rigidbody1.isKinematic = false;
             collider1.enabled = true;
-            //StartCoroutine("ResetColliderCoroutine", 1);
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag != "Player")
         {
-            EquipObject();
+            collisionsGOList.Add(collision.gameObject);
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        pinned = false;
-    }
-
-    IEnumerator ResetColliderCoroutine(float Count)
-    {
-        yield return new WaitForSeconds(Count); //Count is the amount of time in seconds that you want to wait.
-        ResetCollider();                           //And here goes your method of resetting the game...
-        yield return null;
-    }
-
-    public void ResetCollider()
-    {
-        if (equiped)
+        if (collisionsGOList.Contains(collision.gameObject))
         {
-            Debug.Log("here");
-            collider1.enabled = true;
+            collisionsGOList.Remove(collision.gameObject);
         }
+
     }
 }
