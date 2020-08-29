@@ -119,6 +119,9 @@ public class PlayerController : MonoBehaviour
     /******************************* UPDATE ******************************/
     void Update()
     {
+        Debug.Log("PauseMenuEnabled from PlayerController: " + playerInput.pauseMenuEnabled);
+        if(playerInput.pauseMenuEnabled) return;
+
         //Updates
         UpdateInteraction();
         UpdateMovingStatus();
@@ -142,6 +145,8 @@ public class PlayerController : MonoBehaviour
     /******************************** MOVE *******************************/
     void FixedUpdate()
     {
+        if(playerInput.pauseMenuEnabled) return;
+
         foreach (MovementType moveType in movements)
         {
             if (status == moveType.changeTo)

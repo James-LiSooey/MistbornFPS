@@ -121,14 +121,20 @@ public class PlayerInput : MonoBehaviour
         get { return Input.GetButton("SenseMetal");  }
     }
 
+    public bool pauseMenuEnabled = false;
+
     private Vector2 previous;
     private Vector2 _down;
 
     private int jumpTimer;
     private bool jump;
 
+    GameObject pauseMenu;
+
     void Start()
     {
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+        pauseMenu.SetActive(false);
         jumpTimer = -1;
     }
 
@@ -147,6 +153,15 @@ public class PlayerInput : MonoBehaviour
             if (previous.y != 0)
                 _down.y = previous.y;
         }
+
+        if (Input.GetButtonDown("Pause")) {
+            pauseMenuEnabled = !pauseMenuEnabled;
+            if(pauseMenuEnabled) {
+                pauseMenu.SetActive(true);
+            } else {
+                pauseMenu.SetActive(false);
+            }
+        }        
     }
 
     public void FixedUpdate()
