@@ -10,14 +10,8 @@ public class CameraMovement : MonoBehaviour
 
     public GameObject characterBody;
 
-    [SerializeField]
-    Slider horizontalSlider;
-
-    [SerializeField]
-    Slider verticalSlider;
-
-    private float horizontalSens;
-    private float verticalSens;
+    public float horizontalSens;
+    public float verticalSens;
 
     [SerializeField]
     private Vector2 clampInDegrees = new Vector2(360, 180);
@@ -29,8 +23,6 @@ public class CameraMovement : MonoBehaviour
     private Vector2 targetDirection;
     [SerializeField]
     private Vector2 targetCharacterDirection;
-
-    
 
     private PlayerInput playerInput;
 
@@ -45,18 +37,13 @@ public class CameraMovement : MonoBehaviour
 
         playerInput = GetComponentInParent<PlayerInput>();
 
-        horizontalSens = 0.59f;
-        verticalSens = 0.59f;
+        horizontalSens = 0.5f;
+        verticalSens = 0.5f;
     }
 
     void Update()
     {
         if(playerInput.pauseMenuEnabled) return;
-
-        if(horizontalSlider.IsActive() && verticalSlider.IsActive()) {
-            horizontalSens = horizontalSlider.value;
-            verticalSens = verticalSlider.value;
-        }
 
         // Allow the script to clamp based on a desired target value.
         var targetOrientation = Quaternion.Euler(targetDirection);
@@ -116,8 +103,11 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
-    public void SetSensitivity(float sensX, float sensY) {
-        horizontalSens = sensX;
-        verticalSens = sensY;
+    public void SetHorizontalSensitivity(float sens) {
+        horizontalSens = sens;
+    }
+
+    public void SetVerticalSensitivity(float sens) {
+        verticalSens = sens;
     }
 }

@@ -119,7 +119,6 @@ public class PlayerController : MonoBehaviour
     /******************************* UPDATE ******************************/
     void Update()
     {
-        Debug.Log("PauseMenuEnabled from PlayerController: " + playerInput.pauseMenuEnabled);
         if(playerInput.pauseMenuEnabled) return;
 
         //Updates
