@@ -117,7 +117,6 @@ public class PlayerController : MonoBehaviour
         stamina = sprintTime;
 
         SpawnPoint = transform;
-        Debug.Log("From Start: " + SpawnPoint.position);
     }
 
     private void Awake()
@@ -129,7 +128,6 @@ public class PlayerController : MonoBehaviour
     {
         if(playerInput.pauseMenuEnabled) return;
 
-        Debug.Log("From Update: " + SpawnPoint.position);
         //Updates
         UpdateInteraction();
         UpdateMovingStatus();

@@ -68,7 +68,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool AimEquipped
     {
-        get { return Input.GetAxis("AimEquipped")>.1f; }
+        get { return (Input.GetAxis("AimEquipped")>.1f || Input.GetMouseButton(0)); }
     }
 
     public bool interact
@@ -91,10 +91,10 @@ public class PlayerInput : MonoBehaviour
         get { return Input.GetMouseButton(1); }
     }
 
-    public bool shooting
-    {
-        get { return Input.GetMouseButton(0); }
-    }
+    // public bool shooting
+    // {
+    //     get { return Input.GetMouseButton(0); }
+    // }
 
     // public float mouseScroll
     // { 
