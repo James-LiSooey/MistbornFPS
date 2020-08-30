@@ -40,7 +40,7 @@ public class PushMovement : MovementType
 
         if (metal.weight < 6f)
         {
-            metal.Push(move, -pushForce * pushSpeed * .2f, appliedGravity);
+            metal.Push(move, -pushForce * pushSpeed * .1f, appliedGravity);
             if (metal.pinned)
             {
                 movement.Move(move, pushForce * pushSpeed, appliedGravity);

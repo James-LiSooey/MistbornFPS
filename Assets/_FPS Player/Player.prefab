@@ -365,6 +365,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterBody: {fileID: 7085721664118310506}
+  horizontalSens: 0
+  verticalSens: 0
   clampInDegrees: {x: 360, y: 180}
   sensitivity: {x: 0.56, y: 0.56}
   smoothing: {x: 2, y: 2}
@@ -477,6 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1157499c673dbce4e8a6b18fafebbfa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenuEnabled: 0
 --- !u!114 &6526632517528651534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,6 +500,7 @@ MonoBehaviour:
   sprintTime: 20
   sprintReserve: 10
   sprintMinimum: 2
+  SpawnPoint: {fileID: 0}
   equipTransform: {fileID: 1394321974}
 --- !u!114 &2453986428590421080
 MonoBehaviour:
