@@ -115,6 +115,9 @@ public class PlayerController : MonoBehaviour
         info = new PlayerInfo(movement.controller.radius, movement.controller.height);
         crouchCamAdjust = (crouchHeight - info.height) / 2f;
         stamina = sprintTime;
+
+        SpawnPoint = transform;
+        Debug.Log("From Start: " + SpawnPoint.position);
     }
 
     private void Awake()
@@ -126,6 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         if(playerInput.pauseMenuEnabled) return;
 
+        Debug.Log("From Update: " + SpawnPoint.position);
         //Updates
         UpdateInteraction();
         UpdateMovingStatus();

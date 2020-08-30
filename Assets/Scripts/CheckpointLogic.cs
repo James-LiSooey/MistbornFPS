@@ -18,6 +18,7 @@ public class CheckpointLogic : MonoBehaviour
         {
             var playerController = other.gameObject.GetComponent<PlayerController>();
             playerController.SpawnPoint = checkPointSpawn;
+            Debug.Log("CheckpointSpawn: " + playerController.SpawnPoint.position);
 
             colliderCheckPoint.enabled = false;
         }

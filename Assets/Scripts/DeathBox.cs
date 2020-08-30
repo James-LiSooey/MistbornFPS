@@ -13,7 +13,13 @@ public class DeathBox : MonoBehaviour
             var playerMovement = other.gameObject.GetComponent<PlayerMovement>();
             var playerController = other.gameObject.GetComponent<PlayerController>();
 
-            playerMovement.ResetPositionTo(playerController.SpawnPoint.position);
+            Debug.Log("SpawnPoint: " + playerController.SpawnPoint.position);
+
+            // if(playerController.SpawnPoint == null) {
+            //     playerMovement.ResetPositionTo(Vector3.zero);
+            // } else {
+                playerMovement.ResetPositionTo(playerController.SpawnPoint.position);
+            //}
         }
     }
 }
