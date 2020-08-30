@@ -8,6 +8,9 @@ TagManager:
   - Ground
   - Metal
   - PauseMenu
+  - DeathBox
+  - SpawnPoint
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

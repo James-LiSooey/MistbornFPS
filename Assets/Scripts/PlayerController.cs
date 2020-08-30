@@ -53,9 +53,10 @@ public class PlayerController : MonoBehaviour
     List<MovementType> movements;
     WallrunMovement wallrun;
     SurfaceSwimmingMovement swimming;
-
+    public Transform SpawnPoint;
     public Transform equipTransform;
     private AllomancyTargeting allomancyTargeting;
+
     public void ChangeStatus(Status s)
     {
         if (status == s) return;
@@ -114,6 +115,10 @@ public class PlayerController : MonoBehaviour
         info = new PlayerInfo(movement.controller.radius, movement.controller.height);
         crouchCamAdjust = (crouchHeight - info.height) / 2f;
         stamina = sprintTime;
+    }
+
+    private void Awake()
+    {
     }
 
     /******************************* UPDATE ******************************/
@@ -337,6 +342,22 @@ public class PlayerController : MonoBehaviour
             var metal = collision.gameObject.GetComponent<Metal>();
             allomancyTargeting.EquipTarget(collision.gameObject);
             metal.EquipObject(equipTransform);
+        }
+    }
+
+    private void setSpawnLocation()
+    {
+
+        PlayerSaveData data;
+
+        if (SaveSystem.LoadData() != null)
+        {
+            data = SaveSystem.LoadData();
+            Debug.Log("Spawn Location: " + data.position[0] + " " + data.position[1] + " " + data.position[2]);
+            transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
+            transform.rotation = Quaternion.Euler(new Vector3(data.rotation[0], data.rotation[1], data.rotation[2]));
+            Debug.Log("Spawn Location: " + transform.position.x + " " + transform.position.y + " " + transform.position.z);
+
         }
     }
 }
