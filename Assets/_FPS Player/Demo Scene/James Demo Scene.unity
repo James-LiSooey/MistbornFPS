@@ -2816,7 +2816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  timeLimit: 100
+  timeLimit: 200
   gameStatus: InProgress
 --- !u!1 &644354599
 GameObject:
